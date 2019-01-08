@@ -15,3 +15,24 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require_tree .
+
+
+function increaseValue() {
+    var value = parseInt(document.getElementById('qty').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('qty').value = value;
+  }
+  
+  function decreaseValue() {
+    var value = parseInt(document.getElementById('qty').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value < 1 ? value = 1 : '';
+    value--;
+    document.getElementById('qty').value = value;
+  }
+
+  function openURL(url){
+    document.location.href = url;
+  }

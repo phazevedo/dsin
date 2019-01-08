@@ -1,0 +1,27 @@
+<style>
+    .history-content{
+        width: 100%;
+        background-color: blue;
+        height: 50px;
+        display:flex;
+        justify-content: flex-end;
+        color: white;
+        cursor: pointer;
+    }
+    .history-image{
+        width: 40px;
+    }
+    .history-main-text{
+        align-self: center;
+        width: 100%; 
+        padding-left:10px;
+        font-size: 25px;
+    }
+</style>
+<% @order = Order.where(client_id: @current_client.id, status: Order::STATUS_ENDED).last %>
+<% if @order %>
+    <div class="history-content" onclick="openURL('<%= history_url %>')">
+        <span class="history-main-text">Clique aqui para visulizar seu histórico de pedidos</span>
+        <img class="history-image" src="https://www.materialui.co/materialIcons/action/history_white_192x192.png" alt="">
+    </div>
+<% end %>
