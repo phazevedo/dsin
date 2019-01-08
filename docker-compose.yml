@@ -12,11 +12,8 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - mail
     build: .
     environment:
-      - REDIS_SIDEKIQ_URL=redis://redis:6379/0
-      - REDIS_URL=redis://redis:6379      
       - MEMCACHED_HOST=memcached
       - SECRET_KEY_BASE
       - DB_HOST=db
@@ -30,19 +27,7 @@ services:
       - APP_EMAIL
       - PIWIK_HOST
       - PIWIK_ID
-      - SMTP_SERVER
-      - SMTP_PORT
-      - SMTP_DOMAIN
-      - SMTP_USERNAME
-      - SMTP_PASSWORD
-      - SMTP_AUTHENTICATION
-      - SMTP_ENABLE_STARTTLS_AUTO
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
-      - AWS_BUCKET
-      - AWS_REGION
       - BLAZER_DATABASE_URL
       - ROLLBAR_ACCESS_TOKEN
     links:
       - db
-      - redis
