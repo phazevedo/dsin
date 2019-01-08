@@ -1,0 +1,64 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  dsin: &app_base
+    tty: true
+    stdin_open: true
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/DSIN
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - mail
+    build: .
+    environment:
+      - REDIS_SIDEKIQ_URL=redis://redis:6379/0
+      - REDIS_URL=redis://redis:6379      
+      - MEMCACHED_HOST=memcached
+      - SECRET_KEY_BASE
+      - DB_HOST=db
+      - DB_USER
+      - DB_PASSWORD
+      - RAILS_ENV
+      - RAILS_MAX_THREADS
+      - APP_HOST
+      - APP_ADMIN_EMAIL
+      - APP_ADMIN_PASSWORD
+      - APP_EMAIL
+      - PIWIK_HOST
+      - PIWIK_ID
+      - SMTP_SERVER
+      - SMTP_PORT
+      - SMTP_DOMAIN
+      - SMTP_USERNAME
+      - SMTP_PASSWORD
+      - SMTP_AUTHENTICATION
+      - SMTP_ENABLE_STARTTLS_AUTO
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_BUCKET
+      - AWS_REGION
+      - BLAZER_DATABASE_URL
+      - ROLLBAR_ACCESS_TOKEN
+    links:
+      - db
+      - redis
+
+  redis:
+    image: redis:4.0-alpine
+
+  worker:
+    <<: *app_base
+    command: bundle exec sidekiq
+    ports: []
+    depends_on:
+      - dsin
+      - redis
+
+  mail:
+    image: hinshun/mailcatcher
+    ports:
+      - 1080:1080 # open browser here to warch mails sent by rails, use smtp to 1025 as config
