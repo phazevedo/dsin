@@ -3,5 +3,6 @@ class Product < ApplicationRecord
     has_many :ingredients, :through => :product_ingredients
 
     as_many :order_products
-    has_many :orders, :through => :order_products
+    has_many :orders, :throgh => :order_products
+    has_one :type
 end
