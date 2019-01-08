@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :types
   resources :orders
   resources :ingredients
   resources :clients
