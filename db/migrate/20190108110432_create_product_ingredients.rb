@@ -1,6 +1,6 @@
-class CreateProductIngrendients < ActiveRecord::Migration[5.0]
+class CreateProductIngredients < ActiveRecord::Migration[5.0]
   def change
-    create_table :product_ingrendients do |t|
+    create_table :product_ingredients do |t|
       t.references :product, foreign_key: true
       t.references :ingredient, foreign_key: true
 
