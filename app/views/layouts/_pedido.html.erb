@@ -1,0 +1,48 @@
+<style>
+    .content{
+        width: 100%;
+        background-color: red;
+        height: 50px;
+        display:flex;
+        justify-content: flex-end;
+        color: white;
+        cursor: pointer;
+    }
+    .car-image{
+        width: 40px;
+    }
+    .products-total{
+        margin: 5px;
+        font-size: 25px;
+        border: 2px solid white;
+        border-radius: 80%;
+        padding: 7px;
+        display:flex;
+        justify-content:center;
+        align-items: center;
+    }
+    .main-text{
+        align-self: center;
+        width: 100%; 
+        padding-left:10px;
+        font-size: 25px;
+    }
+</style>
+<% @order = Order.where(client_id: @current_client.id, status: Order::STATUS_FOLLOWABLE).last %>
+<% if @order %>
+<div class="content" onclick="openURL('<%= order_url(@order.id) %>')">
+        <% if @order.status == Order::STATUS_OPEN %>
+            <span class="main-text">Clique aqui para finalizar o seu pedido</span>
+        <% else %>
+            <% if @order.status == Order::STATUS_STARTED %>
+                <span class="main-text">Clique aqui para alterar o seu pedido ou selecione um item adicional abaixo</span>        
+            <% else %>
+                <span class="main-text">Clique aqui para acompanhar o seu pedido</span>
+            <% end %>
+        <% end %>
+        <img class="car-image" src="http://www.clker.com/cliparts/U/D/n/G/6/h/white-shopping-cart-md.png" alt="">
+        <span class="products-total">
+            <%= @order.products.size %>    
+        </span>
+    </div>
+<% end %>

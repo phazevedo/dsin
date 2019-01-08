@@ -1,31 +1,41 @@
+<%- model_class = Order -%>
+<%= render partial: 'layouts/pedido' %> 
+<%= render partial: 'layouts/historico' %> 
 <p id="notice"><%= notice %></p>
-
-<h1>Orders</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Obs</th>
-      <th>Client</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.date %></td>
-        <td><%= order.obs %></td>
-        <td><%= order.client %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+<div class="page-header">
+  <div id="exTab2" class="container">	
+    <ul class="nav nav-tabs">
+      <% @types.each do |type| %>
+        <li><a href="#<%=type.id%>" data-toggle="tab"><%=type.name%></a>
+        </li>
+      <% end %>
+		</ul>
+</div>    
+    <div class="tab-content ">
+      <% @types.each do |type| %>  
+        <div class="tab-pane" id="<%=type.id%>">
+          <% @products.where(type_id: type.id).each do |prod| %>
+          <div class="product">
+            <div class="product-img">
+              <img src="<%= prod.photo %>">
+            </div>
+            <div class="product-info">
+              <h3><%=prod.name%></h3>
+              <% unless prod.ingredients.empty? %>
+                <div class="ingredients"> 
+                  <%= prod.ingredients.map(&:name).join(", ")%>
+                </div>
+              <% end %>
+            </div>
+            <div class="price">
+              <h2><%=number_to_currency(prod.price, :unit => "R$")%></h2>
+            </div>
+            <div class="btn-add">
+              <%= link_to '+',  order_add_item_path(prod_id: prod.id),  { id: 1, prod_id:  prod.id}%>
+            </div>
+          </div>
+          <% end %>        
+        </div>
+      <% end %>
+    </div>
+  </div>

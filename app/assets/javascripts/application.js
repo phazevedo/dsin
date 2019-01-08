@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require popper
 //= require twitter/bootstrap
 //= require turbolinks
-//= require_tree .
 //= require_tree .
 
 
