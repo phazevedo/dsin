@@ -28,7 +28,7 @@
         font-size: 25px;
     }
 </style>
-<% @order = Order.where(client_id: @current_client.id, status: Order::STATUS_FOLLOWABLE).last %>
+<% @order = Order.where(client_id: current_client.id, status: Order::STATUS_FOLLOWABLE).last %>
 <% if @order %>
 <div class="content" onclick="openURL('<%= order_url(@order.id) %>')">
         <% if @order.status == Order::STATUS_OPEN %>

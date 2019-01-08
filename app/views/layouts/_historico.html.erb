@@ -18,7 +18,7 @@
         font-size: 25px;
     }
 </style>
-<% @order = Order.where(client_id: @current_client.id, status: Order::STATUS_ENDED).last %>
+<% @order = Order.where(client_id: current_client.id, status: Order::STATUS_ENDED).last %>
 <% if @order %>
     <div class="history-content" onclick="openURL('<%= history_url %>')">
         <span class="history-main-text">Clique aqui para visulizar seu histórico de pedidos</span>

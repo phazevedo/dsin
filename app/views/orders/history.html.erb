@@ -15,7 +15,7 @@
             </thead>
 
             <tbody>
-            <% Order.where(client_id: @current_client.id, status: Order::STATUS_ENDED).each do |order| %>
+            <% Order.where(client_id: current_client.id, status: Order::STATUS_ENDED).each do |order| %>
                 <tr>
                     <td><%= order.created_at.strftime("%d/%m/%Y %H:%M")%></td>
                     <td><%= order.products.map(&:name).join(", <br>").html_safe %></td>
