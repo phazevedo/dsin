@@ -116,3 +116,8 @@ Caso queria testar com um pedido criado é necessário entrar na área do admini
 Aqui o pedido apara com a opção de ver detalhes ou com o botão "pedir". que ao ser clicado já cria automaticamente um pedido com esses itens. E fica aberto para que o cliente possa adicionar algo ou remover algo.
 
 O pedido precisa ser confirmado pelo usuário. 
+
+
+Online também em 
+
+https://dsin-rails.herokuapp.com/ 
