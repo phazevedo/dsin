@@ -5,15 +5,20 @@
 <% if @orders.select{|o| o.status == Order::STATUS_STARTED }.any? %>
   <%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido Confirmado",  orders_table: @orders.select{|o| o.status == Order::STATUS_STARTED } }%>
 <% end %>
-<% if @orders.select{|o| o.status == Order::STATUS_READY }.any? %>
-<%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido Em preparo",  orders_table: @orders.select{|o| o.status == Order::STATUS_READY }} %>
+
+<% if @orders.select{|o| o.status == Order::STATUS_PREPARE }.any? %>
+<%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido Em preparo",  orders_table: @orders.select{|o| o.status == Order::STATUS_PREPARE }} %>
 <% end %>
 
-<% if @orders.select{|o| o.status == Order::STATUS_ENDED }.any? %>
-<%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido Finalizado",  orders_table: @orders.select{|o| o.status == Order::STATUS_ENDED } }%>
+<% if @orders.select{|o| o.status == Order::STATUS_READY }.any? %>
+<%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido pronto",  orders_table: @orders.select{|o| o.status == Order::STATUS_READY }} %>
 <% end %>
 
 <% if @orders.select{|o| o.status == Order::STATUS_DELIVERY }.any? %>
 <%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido Saiu para entrega",  orders_table: @orders.select{|o| o.status == Order::STATUS_DELIVERY } }%>
+<% end %>
+
+<% if @orders.select{|o| o.status == Order::STATUS_ENDED }.any? %>
+<%= render partial: 'layouts/admins/order_table', locals: {title: "Pedido Finalizado",  orders_table: @orders.select{|o| o.status == Order::STATUS_ENDED } }%>
 <% end %>
 
