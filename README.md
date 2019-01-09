@@ -105,7 +105,8 @@ A primeira requistada pela tarefa demonstra o desempenho do restaurante por sema
 
 O segundo que foi realizado como um extra, exibe os ultimos 7 dias de forma mais reduzida.
 
-# Sugestão
+# Sugestões
+Foi implementado 2 sugestões;
 ## Pedir novamente
 Sugestão para a área do Cliente
 A sugestão foi de que apareça para o cliente os últimos pedidos realizados por ele e que ele possa pedir novamente.
@@ -116,6 +117,11 @@ Caso queria testar com um pedido criado é necessário entrar na área do admini
 Aqui o pedido apara com a opção de ver detalhes ou com o botão "pedir". que ao ser clicado já cria automaticamente um pedido com esses itens. E fica aberto para que o cliente possa adicionar algo ou remover algo.
 
 O pedido precisa ser confirmado pelo usuário. 
+
+## Mais pedido do restaurante
+O produto mais pedido aparecerá com uma estrela e um texto, incentivando o usuário a comprar.
+
+A contagem só é realizada por pedidos "ENCERRADO", caso queira testar será necessário fazer um pedido com uma grande quantidade de um mesmo produto(20+) e encerrar o pedido pela area do administrador.
 
 
 Online também em 
