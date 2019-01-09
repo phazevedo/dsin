@@ -132,7 +132,7 @@ https://github.com/phazevedo/dsin/tree/master/PrintScreen/
 Estrutura do banco de dados:
 
 
-![Image BD](https://github.com/phazevedo/dsin/tree/master/PrintScreen/BDv2.png)
+![Image BD](https://github.com/phazevedo/dsin/blob/master/PrintScreen/BDv1.png?raw=true)
 
 Online também em 
 
