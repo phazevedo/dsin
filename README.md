@@ -35,7 +35,7 @@ docker-compose run dsin rails db:seed
 
 ## Atividades obrigatórias
 
-###Introdução
+### Introdução
 O sistema se baseia na necessidade de um dono de restaurante que precisa que seus clientes possam realizar pedidos online. Mesmo que não tenha sido requisitados conclui que haviar a necessidade de um sistema de login.
 Logo para acessar as funcionalidades de cliente será necessário criar uma conta em: 
 ```
@@ -52,7 +52,7 @@ email: teste@teste.com
 senha: 123456
 ```
 
-###Criação de pedidos
+### Criação de pedidos
 Ao realizar o login o usuário será redirecionado automáticamente para a tela de pedido. 
 Aqui podemos ver primeiramente as abas, as quais incluem diferentes tipos de produtos.
 Ao selecionar uma das abas os produtos são mostrados e podem ser adicionados ao clicar nas mesmas.
@@ -68,13 +68,13 @@ Caso não haja alterações clique em confirmar para enviar seu pedido para o re
 
 Como a mensagem nos informa você ainda pode adicionar ou remover itens do seu pedido, porém depois que o restaurante confirmar isso não será mais possivel pelo sistemas, apenas ligando no restaurante.
 
-###Histórico de pedidos
+### Histórico de pedidos
 Na tela de pedido se reparmos no topo tem um aviso azul que permite visualizar os pedido realizados.
 
-###Detalhes do Pedido
+### Detalhes do Pedido
 Na tela de histórico é possível visualizar os detalhes do pedido.
 
-##Opcionais
+## Opcionais
 **Antes de realizar estes passos, deslogar da área do cliente ao clicar em "Sair" em qualquer tela.**
 Para a parte opcional foi criado um segundo login de administrador.
 Que pode ser acessado em:
@@ -86,7 +86,7 @@ e utilizar
 email: admin@admin.com
 senha: 123456
 ```
-###Alterar Pedidos e Status
+### Alterar Pedidos e Status
 ```
 localhost:3000/admin/orders
 ```
@@ -94,7 +94,7 @@ Possui todos os pedidos separados por status, onde podem ser acessados e alterad
 
 O Status do pedido pode ser alterado para indicar que o pedido foi recebido pelo restaurante, está em preparo, está pronto, foi enviado e foi encerrado.
 
-###Relatórios
+### Relatórios
 Os relatórios pode ser acessados em 
 ```
 localhost:3000/admins/report
@@ -105,8 +105,8 @@ A primeira requistada pela tarefa demonstra o desempenho do restaurante por sema
 
 O segundo que foi realizado como um extra, exibe os ultimos 7 dias de forma mais reduzida.
 
-#Sugestão
-##Pedir novamente
+# Sugestão
+## Pedir novamente
 Sugestão para a área do Cliente
 A sugestão foi de que apareça para o cliente os últimos pedidos realizados por ele e que ele possa pedir novamente.
 Os pedidos aqui só são exibidos quando estão com o status "Encerrado".
