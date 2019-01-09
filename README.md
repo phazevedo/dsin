@@ -123,6 +123,15 @@ O produto mais pedido aparecerá com uma estrela e um texto, incentivando o usu�
 
 A contagem só é realizada por pedidos "ENCERRADO", caso queira testar será necessário fazer um pedido com uma grande quantidade de um mesmo produto(20+) e encerrar o pedido pela area do administrador.
 
+## PrintScreens
+
+Os prints das telas foram adicionados na pasta rais do projeto: 
+
+https://github.com/phazevedo/dsin/tree/master/PrintScreen/
+
+Estrutura do banco de dados:
+
+![alt BS](https://github.com/phazevedo/dsin/tree/master/PrintScreen/BDv2.png)
 
 Online também em 
 
