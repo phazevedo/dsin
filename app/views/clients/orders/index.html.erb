@@ -20,6 +20,14 @@
             <div class="product">
               <div class="product-img">
                 <img src="<%= prod.photo %>">
+                <% if prod.id == @most_buyed_id %>
+                  <div class="most_buyed">
+                    <img src="https://clipart.info/images/ccovers/1495916688christmas-tree-star-png-image-gallery-11.png" alt="" id="star">
+                    <span>
+                      Mais pedido
+                    </span>
+                  </div>
+                <% end %>
               </div>
               <div class="product-info">
                 <h3><%=prod.name%></h3>

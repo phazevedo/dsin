@@ -21,3 +21,14 @@
  a:visited{
     color: white !important; 
 }
+
+#star{
+    width: 50px;
+}
+.most_buyed{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

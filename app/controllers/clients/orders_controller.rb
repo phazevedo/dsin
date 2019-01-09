@@ -8,6 +8,7 @@ class Clients::OrdersController < Clients::ClientsController
         @orders = Order.all
         @types = Type.all
         @products = Product.all
+        @most_buyed_id = OrderProduct.joins(:order, :product).where(orders: {status: Order::STATUS_ENDED}).group("order_products.product_id").sum("order_products.qty").max_by{|k,v| v}.first
     end
 
     def add_item
