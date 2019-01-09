@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   private
   def layout
-    !devise_controller? && "application"
+    devise_controller? ? "devise" : "application"
   end
 
 end

@@ -5,12 +5,31 @@
     <title>DSIN</title>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+      html, body{
+        height: 100vh;
+      }
+    .teste{
+      margin: auto;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    </style>
   </head>
 
   <body>
+  <% if notice %>
     <div class="alert alert-warning" role="alert">
       <%= notice %>
     </div>
-    <%= yield %>
+  <% end %>
+  <div class="teste">
+    <div>
+      <%= yield %>
+    </div>
+  </div>
   </body>
 </html>
