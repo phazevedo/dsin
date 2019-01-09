@@ -1,0 +1,12 @@
+ <div>
+    <%= link_to 'Voltar', admin_report_path, class: "btn btn-primary" %>
+  </div>
+<h4>
+    Lucro total: <%= @total_value %>
+</h4>
+<h4>
+    Numero de Pedidos: <%= @count %>
+</h4>
+
+
+<%= render partial: 'layouts/admins/order_table', locals: { orders_table: @orders }%>

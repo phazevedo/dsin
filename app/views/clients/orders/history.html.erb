@@ -1,0 +1,35 @@
+  <div>
+    <%= link_to 'Voltar', client_orders_path, class: "btn btn-primary" %>
+  </div>
+
+<div class="card table-consultation">
+    <div class="header">
+        <h4 class="title">Histórico</h4>
+    </div>
+    <div class="content table-responsive table-full-width">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Produtos</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% Order.where(client_id: current_client.id, status: Order::STATUS_ENDED).each do |order| %>
+                <tr>
+                    <td><%= order.created_at.strftime("%d/%m/%Y %H:%M")%></td>
+                    <td><%= order.products.map(&:name).join(", <br>").html_safe %></td>
+                    <td><%= order.value %></td>
+                    <td>
+                    <%= button_to client_order_path(order.id), method: :get do %>
+                        Detalhes
+                    <% end %>  
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

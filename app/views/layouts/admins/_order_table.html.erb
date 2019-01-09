@@ -1,0 +1,34 @@
+
+<div class="card table-consultation">
+  <div class="header">
+    <h4 class="title"><%= title rescue '' %></h4>
+  </div>
+    <div class="content table-responsive table-full-width">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Numero</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% orders_table.each do |order| %>  
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= order.created_at.strftime("%d/%m/%Y %H:%M")%> </td>
+              <td><%= order.get_status %></td>
+              <td><%= order.value %></td>
+              <td>
+                <%= button_to admin_order_path(order.id), method: :get do %>
+                  Detalhes
+                <% end %>  
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

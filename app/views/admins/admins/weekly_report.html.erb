@@ -1,0 +1,23 @@
+ <div>
+    <%= link_to 'Voltar', admin_report_path, class: "btn btn-primary" %>
+  </div>
+<% @weeks.each do |w, ids| %>
+<h3> Semana do dia <%= Date.parse(w.to_s).strftime("%d/%m/%Y") %> </h3>
+<% @orders = Order.where(id: ids) %>
+   <%  @total_value = 0%>
+       <%  @count = 0 %>
+       <%  @orders.each do |order|
+            @total_value += order.value
+            @count += 1
+        end%>
+<h4>
+    Lucro total <%= @total_value %>
+</h4>
+<h4>
+    Numero de Pedidos <%= @count %>
+</h4>
+
+
+<%= render partial: 'layouts/admins/order_table', locals: { orders_table: @orders }%>
+  
+<% end %>

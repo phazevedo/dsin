@@ -1,0 +1,77 @@
+  <style>
+ .order-show .title{
+   font-size: 24px;
+   margin: 10px;
+ }
+ .order-show .data{
+   font-size: 20px;
+   margin: 10px;
+ }
+
+ 
+</style>
+ <div>
+    <%= link_to 'Voltar', client_orders_path, class: "btn btn-primary" %>
+  </div>
+  <div class="container order-show">
+    <div class="title">
+      Pedido: nº <%=@order.id%>
+    </div>
+    <div class="data">
+      Data Pedido: <%=@order.created_at.strftime("%d/%m/%Y %H:%M")%>
+    </div>
+    <div class="data">
+      Valor total: <%= @order.value %>
+    </div>
+    <div class="data">
+      <% if @order.status != Order::STATUS_OPEN %>
+        Status: <%= @order.get_status%> 
+      <% end %> 
+    </div>
+
+<div class="card">
+  <div class="header">
+    <h4 class="title">Produtos</h4>
+  </div>
+    <div class="content table-responsive table-full-width">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% OrderProduct.where(order_id: @order.id).each do |prod| %>  
+            <tr>
+              <td><%= prod.product.name %></td>
+              <td><%= prod.product.price %></td>
+              <td><%= prod.qty %></td>
+              <% if Order::STATUS_EDITABLE.include?(@order.status) %>
+                <td>
+                  <%= button_to client_remove_prod_orders_path(prod.id), method: :delete, data: {confirm: 'Esse item será removido do pedido', disable_with: false}, class: 'options delete-btn' do %>
+                    remover
+                  <% end %>  
+                </td>
+              <% end %> 
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="order-btns">
+    <% if @order.status == Order::STATUS_OPEN %>
+      <%= link_to "CONFIRMAR", client_confirm_order_path(@order.id),method: :post, :class => 'btn btn-default' %>
+    <% end %> 
+  </div>
+    <% if @order.status == Order::STATUS_STARTED %>
+    <div class="alert alert-warning" role="alert">
+        <h4>Seu pedido foi confirmado com sucesso. Mas você ainda pode remover algum item ou adicionar no menu principal.</h4>
+    </div>
+    <% end %> 
+ </div>
+ 

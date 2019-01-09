@@ -63,10 +63,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 </style>
   <div class="title">
-    <%= link_to 'Voltar', orders_path %>
+    <%= link_to 'Voltar', admin_order_new_item_path(@order.id) %>
     <h2>Adicionar item</h2>
   </div>
-<form action="<%= order_add_item_confirm_url %>" method="post" role="form" class="product">
+<form action="<%= admin_order_add_item_confirm_url %>" method="post" role="form" class="product">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :prod_id, @product.id %>
   <%= hidden_field_tag :order_id, @order.id %>

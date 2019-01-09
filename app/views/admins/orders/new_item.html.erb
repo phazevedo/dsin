@@ -1,6 +1,4 @@
-<%- model_class = Order -%>
-<%= render partial: 'layouts/pedido' %> 
-<%= render partial: 'layouts/historico' %> 
+<h4>Secione o produto a ser adicionado</h4>
 <div class="page-header">
   <div id="exTab2" class="container">	
     <ul class="nav nav-tabs">
@@ -30,7 +28,7 @@
               <h2><%=number_to_currency(prod.price, :unit => "R$")%></h2>
             </div>
             <div class="btn-add">
-              <%= link_to '+',  order_add_item_path(prod_id: prod.id),  { id: 1, prod_id:  prod.id}%>
+              <%= link_to '+',  admin_order_add_item_path(order_id: @order.id, prod_id: prod.id ), method: :post%>
             </div>
           </div>
           <% end %>        

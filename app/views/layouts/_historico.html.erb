@@ -20,7 +20,7 @@
 </style>
 <% @order = Order.where(client_id: current_client.id, status: Order::STATUS_ENDED).last %>
 <% if @order %>
-    <div class="history-content" onclick="openURL('<%= history_url %>')">
+    <div class="history-content" onclick="openURL('<%= client_history_url %>')">
         <span class="history-main-text">Clique aqui para visulizar seu histórico de pedidos</span>
         <img class="history-image" src="https://www.materialui.co/materialIcons/action/history_white_192x192.png" alt="">
     </div>

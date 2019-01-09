@@ -1,0 +1,44 @@
+<%- model_class = Order -%>
+<%= render partial: 'layouts/pedido' %> 
+<%= render partial: 'layouts/historico' %> 
+<%= render partial: 'layouts/recent_orders' %> 
+
+<div class="orders-content">
+  <div class="page-header">
+    <div id="exTab2" class="container">	
+      <ul class="nav nav-tabs">
+        <% @types.each do |type| %>
+          <li><a href="#<%=type.id%>" data-toggle="tab"><%=type.name%></a>
+          </li>
+        <% end %>
+      </ul>
+  </div>    
+      <div class="tab-content ">
+        <% @types.each do |type| %>  
+          <div class="tab-pane" id="<%=type.id%>">
+            <% @products.where(type_id: type.id).each do |prod| %>
+            <div class="product">
+              <div class="product-img">
+                <img src="<%= prod.photo %>">
+              </div>
+              <div class="product-info">
+                <h3><%=prod.name%></h3>
+                <% unless prod.ingredients.empty? %>
+                  <div class="ingredients"> 
+                    <%= prod.ingredients.map(&:name).join(", ")%>
+                  </div>
+                <% end %>
+              </div>
+              <div class="price">
+                <h2><%=number_to_currency(prod.price, :unit => "R$")%></h2>
+              </div>
+              <div class="btn-add">
+                <%= link_to '+',  client_order_add_item_path(prod_id: prod.id),  { id: 1, prod_id:  prod.id}%>
+              </div>
+            </div>
+            <% end %>        
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>

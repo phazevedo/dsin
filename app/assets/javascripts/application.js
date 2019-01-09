@@ -36,3 +36,7 @@ function increaseValue() {
   function openURL(url){
     document.location.href = url;
   }
+
+  $( document ).on('turbolinks:load', function() {
+    $(".nav-tabs li a").first().trigger("click");
+  })

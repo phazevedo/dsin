@@ -1,0 +1,83 @@
+   <style>
+ .order-show .title{
+   font-size: 24px;
+   margin: 10px;
+ }
+ .order-show .data{
+   font-size: 20px;
+   margin: 10px;
+ }
+</style>
+ <div>
+    <%= link_to 'Voltar', admin_dashboard_path, class: "btn btn-primary" %>
+  </div>
+<div>
+</div>
+  <div class="container order-show">
+    <div class="title">
+      Pedido nº <%=@order.id%>
+    </div>
+    <div class="data">
+    Data Pedido <%=@order.created_at.strftime("%d/%m/%Y %H:%M")%>
+    </div>
+    <div class="data">
+      Valor total <%= @order.value %>
+    </div>
+    <div class="data">
+        Status <%= @order.get_status%> 
+    </div>
+
+    <div class="card table-consultation">
+      <div class="header">
+        <h4 class="title">Produtos</h4>
+      </div>
+        <div class="content table-responsive table-full-width">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% OrderProduct.where(order_id: @order.id).each do |prod| %>  
+                <tr>
+                  <td><%= prod.product.name %></td>
+                  <td><%= prod.product.price %></td>
+                  <td><%= prod.qty %></td>
+                    <td>
+                      <%= button_to admin_remove_prod_orders_path(prod.id), method: :delete, data: {confirm: 'Esse item será removido do pedido', disable_with: false}, class: 'options delete-btn' do %>
+                        remover
+                      <% end %>  
+                    </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  <div class="order-btns">
+<% if @order.status != Order::STATUS_ENDED %>
+  <%= link_to "ADICIONAR PRODUTO", admin_order_new_item_path(@order.id),method: :get, :class => 'btn btn-default' %>
+<% end %> 
+
+<% if @order.status == Order::STATUS_STARTED %>
+  <%= link_to "EM PREPARO", admin_order_prepare_path(@order.id),method: :post, :class => 'btn btn-default' %>
+<% end %> 
+
+<% if @order.status == Order::STATUS_PREPARE %>
+  <%= link_to "PRONTO", admin_order_ready_path(@order.id),method: :post, :class => 'btn btn-default' %>
+<% end %> 
+
+<% if @order.status == Order::STATUS_READY %>
+  <%= link_to "SAIU PARA ENTREGA", admin_order_delivery_path(@order.id),method: :post, :class => 'btn btn-default' %>
+<% end %> 
+
+<% if @order.status == Order::STATUS_DELIVERY %>
+  <%= link_to "FINALIZADO", admin_order_ended_path(@order.id),method: :post, :class => 'btn btn-default' %>
+<% end %> 
+</div>
+  </div>

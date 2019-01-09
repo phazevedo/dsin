@@ -30,7 +30,7 @@
 </style>
 <% @order = Order.where(client_id: current_client.id, status: Order::STATUS_FOLLOWABLE).last %>
 <% if @order %>
-<div class="content" onclick="openURL('<%= order_url(@order.id) %>')">
+<div class="content" onclick="openURL('<%= client_order_url(@order.id) %>')">
         <% if @order.status == Order::STATUS_OPEN %>
             <span class="main-text">Clique aqui para finalizar o seu pedido</span>
         <% else %>

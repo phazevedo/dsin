@@ -1,0 +1,77 @@
+<style>
+.recent_order_container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: green;
+    color: white;
+}
+.recent_order_content{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.recent_order
+{
+    flex-grow: 1;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    border: 3px solid white;
+    margin: 10px;
+}
+.order-btns{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40%;
+}
+.order-btns a{
+    width: 80%;
+    margin: 2px;
+}
+.order-btns a:visited{
+    color: black !important;
+}
+.order-btns .btn{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.prod{
+    flex-grow: 1;
+    width: 60%;
+}
+.order-btns .btn:hover{
+    background-color: lightgrey;
+}
+</style>
+
+<% orders = Order.where(client_id: current_client.id, status: Order::STATUS_ENDED).order('created_at desc').limit(4) %>
+<% if orders.size > 0  %>
+    <div class="recent_order_container">
+    <h3 class="title">Esses são seus pedidos recente, clique em pedir, para pedi-los novamente.</h3>
+    <div class="recent_order_content">
+        <% orders.each do |o| %>
+        <div class="recent_order">
+            <div class="prods">
+                <% o.order_products.limit(4).each do |op|%>
+                    <p>(<%=op.qty%>) <%=op.product.name%></p>
+                <%  end %>
+            </div>
+            <div class="order-btns">
+                <%= link_to client_order_again_path(o.id), method: :post, class: "btn" do %>
+                  Pedir
+                <% end %>  
+                <%= link_to client_order_path(o.id), method: :get, class: "btn" do %>
+                  Detalhes
+                <% end %> 
+            </div>
+        </div>
+        <%end%>
+    </div>
+    </div>
+<% end %>
